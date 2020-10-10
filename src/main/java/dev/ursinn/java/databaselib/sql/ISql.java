@@ -28,11 +28,67 @@ package dev.ursinn.java.databaselib.sql;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * SQL Database Interface
+ *
+ * @author Ursin Filli
+ * @version 1.0
+ * @since 1.0
+ */
 public interface ISql {
 
+    /**
+     * Connect to Database
+     *
+     * @throws SQLException in Case of Error
+     * @since 1.0
+     */
+    void connect() throws SQLException;
+
+    /**
+     * Close Connection to Database
+     *
+     * @throws SQLException in Case of Error
+     * @since 1.0
+     */
+    void close() throws SQLException;
+
+    /**
+     * Check if a Database Connection Exists
+     *
+     * @return Status of Connection
+     * @throws SQLException in Case of Error
+     * @since 1.0
+     */
+    boolean isConnected() throws SQLException;
+
+    /**
+     * Execute SQL on Database
+     *
+     * @param sql SQL to Execute
+     * @return Amount of Changed Data
+     * @throws SQLException in Case of Error
+     * @since 1.0
+     */
     int update(String sql) throws SQLException;
 
+    /**
+     * Execute SQL on Database and Return Id of new Row
+     *
+     * @param sql SQL to Execute
+     * @return PrimaryKey ID of new Row
+     * @throws SQLException in Case of Error
+     * @since 1.0
+     */
     long updateId(String sql) throws SQLException;
 
+    /**
+     * Return Data from Database
+     *
+     * @param sql SQL to Execute
+     * @return ResultSet with Data
+     * @throws SQLException in Case of Error
+     * @since 1.0
+     */
     ResultSet get(String sql) throws SQLException;
 }

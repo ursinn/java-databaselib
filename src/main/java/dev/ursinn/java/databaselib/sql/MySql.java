@@ -28,7 +28,14 @@ package dev.ursinn.java.databaselib.sql;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class MySQL extends SQL implements ISql {
+/**
+ * MySQL / MariaDB Database Implementation
+ *
+ * @author Ursin Filli
+ * @version 1.0
+ * @since 1.0
+ */
+public class MySql extends Sql {
 
     private final String host;
     private final String port;
@@ -36,7 +43,17 @@ public class MySQL extends SQL implements ISql {
     private final String username;
     private final String password;
 
-    public MySQL(String host, String port, String database, String username, String password) {
+    /**
+     * Constructor.
+     *
+     * @param host     Host
+     * @param port     Port
+     * @param database Database
+     * @param username Username
+     * @param password Password
+     * @since 1.0
+     */
+    public MySql(String host, String port, String database, String username, String password) {
         this.host = host;
         this.port = port;
         this.database = database;

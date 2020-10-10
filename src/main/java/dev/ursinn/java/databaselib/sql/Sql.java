@@ -27,14 +27,25 @@ package dev.ursinn.java.databaselib.sql;
 
 import java.sql.*;
 
-public class SQL implements ISql {
+/**
+ * SQL Database Template
+ *
+ * @author Ursin Filli
+ * @version 1.0
+ * @since 1.0
+ */
+public class Sql implements ISql {
 
     protected Connection connection;
 
-    public SQL() {
+    /**
+     * Constructor.
+     */
+    public Sql() {
         this.connection = null;
     }
 
+    @Override
     public void connect() throws SQLException {
         if (isConnected()) {
             close();
@@ -42,12 +53,14 @@ public class SQL implements ISql {
         connection = null;
     }
 
+    @Override
     public final void close() throws SQLException {
         if (isConnected()) {
             connection.close();
         }
     }
 
+    @Override
     public final boolean isConnected() throws SQLException {
         if (connection != null) {
             return !connection.isClosed();
@@ -60,23 +73,23 @@ public class SQL implements ISql {
         if (!isConnected()) {
             connect();
         }
-        try(PreparedStatement ps = connection.prepareStatement(sql)) {
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
             return ps.executeUpdate();
         }
     }
 
     @Override
     public final long updateId(String sql) throws SQLException {
-            if (!isConnected()) {
-                connect();
+        if (!isConnected()) {
+            connect();
+        }
+        try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                return rs.getLong(1);
             }
-            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                ps.executeUpdate();
-                ResultSet rs = ps.getGeneratedKeys();
-                if (rs.next()) {
-                    return rs.getLong(1);
-                }
-            }
+        }
         return 0;
     }
 
@@ -85,7 +98,7 @@ public class SQL implements ISql {
         if (!isConnected()) {
             connect();
         }
-        try(PreparedStatement ps = connection.prepareStatement(sql)) {
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
             return ps.executeQuery();
         }
     }
