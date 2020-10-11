@@ -10,7 +10,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-				sh 'mvn clean package -Djar.finalName=DatabaseLib-#${BUILD_NUMBER}'
+				sh 'mvn clean package -Djar.finalName=DatabaseLib-${GIT_BRANCH#*/}-#${BUILD_NUMBER}'
 			}
 			post {
 				success {
