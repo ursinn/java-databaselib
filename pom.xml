@@ -33,6 +33,10 @@
     <artifactId>databaselib</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <name>DatabaseLib</name>
+    <description>DatabaseLib Description</description>
+    <url>https://github.com/ursinn/java-databaselib</url>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -52,9 +56,16 @@
     </dependencyManagement>
 
     <dependencies>
+        <!-- Testing -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>3.5.13</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -102,5 +113,16 @@
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>nexus.filli-it.ch</id>
+            <url>https://nexus.filli-it.ch/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus.filli-it.ch</id>
+            <url>https://nexus.filli-it.ch/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>
