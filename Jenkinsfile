@@ -10,13 +10,13 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-				sh 'mvn clean package -Djar.finalName=DatabaseLib-${GIT_BRANCH#*/}-#${BUILD_NUMBER}'
-			}
-			post {
-				success {
-					archiveArtifacts artifacts: '**/target/**/*.jar', fingerprint: true
+		sh 'mvn clean package -Djar.finalName=DatabaseLib-${GIT_BRANCH#*/}-#${BUILD_NUMBER}'
+	    }
+	    post {
+		success {
+	            archiveArtifacts artifacts: '**/target/**/*.jar', fingerprint: true
                 }
-			}
+	    }
         }
         stage('Deploy') {
             when {
