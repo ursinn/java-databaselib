@@ -27,7 +27,9 @@ pipeline {
             }
             steps {
                 echo 'Deploying..'
-                sh 'mvn clean deploy'
+                configFileProvider([configFile(fileId: 'maven_settings', variable: 'SETTINGS')]) {
+                    sh "mvn -s $SETTINGS clean deploy -DskipTests"
+                }
             }
         }
     }
