@@ -18,5 +18,17 @@ pipeline {
                 }
 			}
         }
+        stage('Deploy') {
+            when {
+                expression {
+                    currentBuild.result == null || currentBuild.result == 'SUCCESS'
+                }
+                branch 'develop'
+            }
+            steps {
+                echo 'Deploying..'
+                sh 'mvn clean deploy'
+            }
+        }
     }
 }
