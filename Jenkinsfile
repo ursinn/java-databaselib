@@ -16,7 +16,7 @@ pipeline {
                 success {
                     archiveArtifacts artifacts: '**/target/**/*.jar', fingerprint: true
                 }
-	    }
+            }
         }
         stage('Deploy') {
             when {
