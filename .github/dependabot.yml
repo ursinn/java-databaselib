@@ -4,8 +4,6 @@ updates:
   directory: "/"
   schedule:
     interval: daily
-  open-pull-requests-limit: 10
-  reviewers:
-  - ursinn
+  target_branch: "develop"
   assignees:
   - ursinn
