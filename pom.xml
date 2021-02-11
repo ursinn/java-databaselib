@@ -2,7 +2,7 @@
 <!--
   ~ MIT License
   ~
-  ~ Copyright (c) 2020 Ursin Filli
+  ~ Copyright (c) 2020 - 2021 Ursin Filli
   ~
   ~ Permission is hereby granted, free of charge, to any person obtaining a copy
   ~ of this software and associated documentation files (the "Software"), to deal
@@ -32,6 +32,7 @@
     <groupId>dev.ursinn.java</groupId>
     <artifactId>databaselib</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <name>DatabaseLib</name>
     <description>DatabaseLib Description</description>
@@ -48,7 +49,7 @@
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
-                <version>5.7.0</version>
+                <version>5.7.1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -65,7 +66,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>3.5.13</version>
+            <version>3.7.7</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -77,7 +78,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.22</version>
+            <version>8.0.23</version>
             <scope>runtime</scope>
         </dependency>
         <!-- SQL - PostgreSQL -->
@@ -91,7 +92,7 @@
         <dependency>
             <groupId>org.xerial</groupId>
             <artifactId>sqlite-jdbc</artifactId>
-            <version>3.32.3.2</version>
+            <version>3.34.0</version>
             <scope>runtime</scope>
         </dependency>
     </dependencies>
@@ -109,7 +110,7 @@
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
-                <version>4.1.4</version>
+                <version>4.2.0</version>
             </plugin>
         </plugins>
     </build>

@@ -18,19 +18,5 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
-            when {
-                expression {
-                    currentBuild.result == null || currentBuild.result == 'SUCCESS'
-                }
-                branch 'develop'
-            }
-            steps {
-                echo 'Deploying..'
-                configFileProvider([configFile(fileId: 'maven_settings', variable: 'SETTINGS')]) {
-                    sh "mvn -s $SETTINGS clean deploy -DskipTests"
-                }
-            }
-        }
     }
 }
