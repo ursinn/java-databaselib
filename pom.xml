@@ -51,6 +51,23 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
             </plugin>
+			<!-- Shade Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <minimizeJar>true</minimizeJar>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <!-- Surefire Plugin -->
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -72,8 +89,8 @@
 <!--        </repository>-->
         <!-- Mirror -->
         <repository>
-            <id>nexus.filli-it.ch</id>
-            <url>https://nexus.filli-it.ch/repository/maven-public/</url>
+            <id>ursinn-repo</id>
+            <url>https://repo.ursinn.dev/repository/maven-public/</url>
         </repository>
     </repositories>
 
@@ -133,12 +150,12 @@
 
     <distributionManagement>
         <repository>
-            <id>nexus.filli-it.ch</id>
-            <url>https://nexus.filli-it.ch/repository/maven-releases/</url>
+            <id>ursinn-repo</id>
+            <url>https://repo.ursinn.dev/repository/maven-releases/</url>
         </repository>
         <snapshotRepository>
-            <id>nexus.filli-it.ch</id>
-            <url>https://nexus.filli-it.ch/repository/maven-snapshots/</url>
+            <id>ursinn-repo</id>
+            <url>https://repo.ursinn.dev/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 </project>
