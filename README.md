@@ -21,4 +21,4 @@ Description
 
 ## License
 
-This project is under the MIT License. See the [LICENSE](https://github.com/superlandnetwork/superlandnetwork/blob/main/LICENSE) file for the full license text.
+This project is under the MIT License. See the [LICENSE](https://github.com/ursinn/java-databaselib/blob/main/LICENSE) file for the full license text.
