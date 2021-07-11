@@ -1,20 +1,38 @@
 pipeline {
     agent {
-        docker {
-            image 'maven:3-alpine'
-            args '-v /root/.m2:/root/.m2'
-        }
+      label 'maven-jdk11-openj9'
+    }
+
+    environment {
+        POM_VERSION = readMavenPom().getVersion()
     }
 
     stages {
+        stage("Initialization") {
+            steps {
+                buildName "#${BUILD_NUMBER} ${POM_VERSION}"
+                scmSkip(deleteBuild: true, skipPattern:'.*\\[ci skip\\].*')
+            }
+        }
+
         stage('Build') {
             steps {
-                echo 'Building..'
-                sh 'mvn clean package -Djar.finalName=DatabaseLib-${GIT_BRANCH#*/}-#${BUILD_NUMBER}'
+                sh 'mvn -B -U -DskipTests -P jenkins clean install'
             }
             post {
                 success {
-                    archiveArtifacts artifacts: '**/target/**/*.jar', fingerprint: true
+                    archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+                }
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'mvn -B test'
+            }
+            post {
+                always {
+                    junit '**/target/surefire-reports/*.xml'
                 }
             }
         }
